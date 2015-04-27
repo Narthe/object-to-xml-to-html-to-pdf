@@ -1,0 +1,38 @@
+<languages-list>
+  <language>
+    <name>Kannada</name>
+    <region>Karnataka</region>
+    <users>38M</users>
+  <family>Dravidian</family>
+  </language>
+  <language>
+    <name>Telugu</name>
+    <region>Andra Pradesh</region>
+    <users>74M</users>
+    <family>Dravidian</family>
+  </language>
+  <language>
+    <name>Tamil</name>
+    <region>TamilNadu</region>
+    <users>61M</users>
+    <family>Dravidian</family>
+  </language>
+  <language>
+    <name>Malayalam</name>
+    <region>Kerela</region>
+    <users>33M</users>
+    <family>Dravidian</family>
+  </language>
+  <language>
+    <name>Hindi</name>
+    <region>Andaman and Nicobar Islands, North india, Parts of North east</region>
+    <users>442M</users>
+    <family>Indo Aryan</family>
+  </language>
+  <language>
+    <name>Assamese</name>
+    <region>Assam, Arunachal Pradesh</region>
+    <users>13M</users>
+    <family>Indo Aryan</family>
+  </language>
+</languages-list>
