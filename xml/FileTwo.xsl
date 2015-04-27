@@ -5,20 +5,20 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">
         <html>
             <body>
-                <h1>Indian Languages details</h1>
+                <h1>Trajets</h1>
                 <table border="1">
                     <tr>
-                        <th>Language</th>
-                        <th>Family/Origin</th>
-                        <th>No. of speakers</th>
-                        <th>Region</th>
+                        <th>id</th>
+                        <th>start</th>
+                        <th>end</th>
+                        <th>distance</th>
                     </tr>
-         <xsl:for-each select="languages-list/language">
+         <xsl:for-each select="Courses/Course">
                     <tr>
-                        <td><xsl:value-of select="name"/></td>
-                        <td><xsl:value-of select="family"/></td>
-                        <td><xsl:value-of select="users"/></td>
-                        <td><xsl:value-of select="region"/></td>
+                        <td><xsl:value-of select="id"/></td>
+                        <td><xsl:value-of select="start"/></td>
+                        <td><xsl:value-of select="end"/></td>
+                        <td><xsl:value-of select="distance"/></td>
                     </tr>
                  </xsl:for-each>
                 </table>

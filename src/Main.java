@@ -30,14 +30,17 @@ public class Main {
 		
 		String coursesXml = "";
 		for(Course course : tab) {
-			coursesXml+= ObjectToXml.serializeCourse(course);
+			coursesXml+= ObjectToXml.serializeCourse(course) + "\n";
 		}
-		String dataXML = "<courses>\n" + coursesXml + "\n</courses>";
+		String dataXML = "<Courses>\n" + coursesXml + "\n</Courses>";
+		System.out.println(dataXML);
+		System.exit(1);
+	    //String inputXSL = "/home/local/users/jbrasseur/DEV/perso/PDF_export/data/FileTwo.xsl";
+	    //String outputHTML = "/home/local/users/jbrasseur/DEV/perso/PDF_export/data/output1.html";
 		
+		String inputXSL = ".\\xml\\FileTwo.xsl";
+		String outputHTML = ".\\xml\\output1.html";
 		
-	    String inputXSL = "/home/local/users/jbrasseur/DEV/perso/PDF_export/data/FileTwo.xsl";
-	    String outputHTML = "/home/local/users/jbrasseur/DEV/perso/PDF_export/data/output1.html";
-
 	    XmlToHtml st = new XmlToHtml();
 	    try
 	    {
