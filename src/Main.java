@@ -33,28 +33,16 @@ public class Main {
 			coursesXml+= ObjectToXml.serializeCourse(course) + "\n";
 		}
 		String dataXML = "<Courses>\n" + coursesXml + "\n</Courses>";
-		System.out.println(dataXML);
-		System.exit(1);
-	    //String inputXSL = "/home/local/users/jbrasseur/DEV/perso/PDF_export/data/FileTwo.xsl";
-	    //String outputHTML = "/home/local/users/jbrasseur/DEV/perso/PDF_export/data/output1.html";
+		//System.out.println(dataXML);
+		//System.exit(1);
+	    String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/FileTwo.xsl";
+	    String outputHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.html";
 		
-		String inputXSL = ".\\xml\\FileTwo.xsl";
-		String outputHTML = ".\\xml\\output1.html";
+		//String inputXSL = ".\\xml\\FileTwo.xsl";
+		//String outputHTML = ".\\xml\\output.html";
 		
 	    XmlToHtml st = new XmlToHtml();
-	    try
-	    {
-	        st.transform(dataXML, inputXSL, outputHTML);
-	    }
-	    catch (TransformerConfigurationException e)
-	    {
-	        System.err.println("TransformerConfigurationException");
-	        System.err.println(e);
-	    }
-	    catch (TransformerException e)
-	    {
-	        System.err.println("TransformerException");
-	        System.err.println(e);
-	    }
-	    }
+	    
+	    st.transform(dataXML, inputXSL, outputHTML);
+	}
 }
