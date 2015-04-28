@@ -35,11 +35,11 @@ public class Main {
 		String dataXML = "<Courses>\n" + coursesXml + "\n</Courses>";
 		//System.out.println(dataXML);
 		//System.exit(1);
-	    String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/FileTwo.xsl";
-	    String outputHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.html";
+	    //String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
+	    //String outputHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.html";
 		
-		//String inputXSL = ".\\xml\\FileTwo.xsl";
-		//String outputHTML = ".\\xml\\output.html";
+		String inputXSL = ".\\xml\\template.xsl";
+		String outputHTML = ".\\xml\\output.html";
 		
 	    XmlToHtml st = new XmlToHtml();
 	    
