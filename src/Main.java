@@ -1,8 +1,14 @@
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
+
+import org.w3c.tidy.Tidy;
 
 
 public class Main {
@@ -46,12 +52,24 @@ public class Main {
 	    XmlToHtml st = new XmlToHtml();
 	    
 	    st.transform(dataXML, inputXSL, outputHTML);
-	    /**
+	    
+	    InputStream inputStream = new StringBufferInputStream(outputHTML);
+	    String htmlString = IOUtils.toString(outputHTML);
+	    
 	    try {
 			HtmlToPDF.transform(outputHTML, outputPDF);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 	}
+	public static String convertHtmlToXhtml(String html) {
+        Tidy tidy = new Tidy(); 
+        tidy.setXHTML(true); 
+        tidy.setDocType("omit");
+        InputStream inputStream = new StringBufferInputStream(html);
+        OutputStream outputStream = new ByteArrayOutputStream();
+        tidy.parse(inputStream, outputStream); 
+        return outputStream.toString();
+    }
 }
