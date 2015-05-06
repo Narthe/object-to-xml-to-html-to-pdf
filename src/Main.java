@@ -1,8 +1,15 @@
+import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.StringBufferInputStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javax.xml.transform.TransformerConfigurationException;
@@ -13,7 +20,7 @@ import org.w3c.tidy.Tidy;
 
 public class Main {
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 	    /*if (args.length != 3)
 	    {
@@ -40,24 +47,26 @@ public class Main {
 			coursesXml+= ObjectToXml.serializeCourse(course) + "\n";
 		}
 		String dataXML = "<Courses>\n" + coursesXml + "\n</Courses>";
-		//System.out.println(dataXML);
-		//System.exit(1);
-	    String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
-	    String outputHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.html";
-	    String outputPDF = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.pdf";
-		//String inputXSL = ".\\xml\\template.xsl";
-		//String outputHTML = ".\\xml\\output.html";
-	    //String outputPDF = ".\\xml\\output.pdf";
+
+	    //String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
+	    //String outputHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.html";
+	    //String outputPDF = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.pdf";
+		String inputXSL = ".\\xml\\template.xsl";
+		String outputHTML = ".\\xml\\output.html";
+		String outputxHTML = ".\\xml\\output.xhtml";
+	    String outputPDF = ".\\xml\\output.pdf";
 		
 	    XmlToHtml st = new XmlToHtml();
 	    
 	    st.transform(dataXML, inputXSL, outputHTML);
 	    
-	    InputStream inputStream = new StringBufferInputStream(outputHTML);
-	    String htmlString = IOUtils.toString(outputHTML);
+	    String htmlString = readFile(outputHTML, StandardCharsets.UTF_8);
+	    String xhtmlString = convertHtmlToXhtml(htmlString);
 	    
+	    writeFile(xhtmlString, outputxHTML);
+	    //System.out.println(htmlString);
 	    try {
-			HtmlToPDF.transform(outputHTML, outputPDF);
+			HtmlToPDF.transform(outputxHTML, outputPDF);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,9 +76,36 @@ public class Main {
         Tidy tidy = new Tidy(); 
         tidy.setXHTML(true); 
         tidy.setDocType("omit");
-        InputStream inputStream = new StringBufferInputStream(html);
+        InputStream inputStream = null;
+		try {
+			inputStream = new ByteArrayInputStream(html.getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         OutputStream outputStream = new ByteArrayOutputStream();
         tidy.parse(inputStream, outputStream); 
         return outputStream.toString();
     }
+	
+	public static String readFile(String path, Charset encoding) 
+			  throws IOException 
+	{
+	  byte[] encoded = Files.readAllBytes(Paths.get(path));
+	  return new String(encoded, encoding);
+	}
+	
+	public static void writeFile(String data, String outputFile)
+	{
+		FileWriter fWriter = null;
+		BufferedWriter writer = null;
+		try {
+		    fWriter = new FileWriter(outputFile);
+		    writer = new BufferedWriter(fWriter);
+		    writer.write(data);
+		    writer.close(); //make sure you close the writer object 
+		} catch (Exception e) {
+		  //catch any exceptions here
+		}
+	}
 }
