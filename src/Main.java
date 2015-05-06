@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.xml.transform.TransformerConfigurationException;
@@ -35,14 +36,22 @@ public class Main {
 		String dataXML = "<Courses>\n" + coursesXml + "\n</Courses>";
 		//System.out.println(dataXML);
 		//System.exit(1);
-	    //String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
-	    //String outputHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.html";
-		
-		String inputXSL = ".\\xml\\template.xsl";
-		String outputHTML = ".\\xml\\output.html";
+	    String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
+	    String outputHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.html";
+	    String outputPDF = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.pdf";
+		//String inputXSL = ".\\xml\\template.xsl";
+		//String outputHTML = ".\\xml\\output.html";
+	    //String outputPDF = ".\\xml\\output.pdf";
 		
 	    XmlToHtml st = new XmlToHtml();
 	    
 	    st.transform(dataXML, inputXSL, outputHTML);
+	    /**
+	    try {
+			HtmlToPDF.transform(outputHTML, outputPDF);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 	}
 }

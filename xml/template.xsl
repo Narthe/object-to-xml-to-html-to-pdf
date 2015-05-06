@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <xsl:stylesheet version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<xsl:output method="html"
+              doctype-system="about:legacy-compat"
+              encoding="UTF-8"
+              indent="yes" />
+
     <xsl:template match="/">
-        <html lang="en" class="no-js">
+        <html>
             <head>
                 <meta charset="UTF-8" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
+                <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />  -->
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
                 <title>Trajets</title>
                 <meta name="description" content="Sticky Table Headers Revisited: Creating functional and flexible sticky table headers" />
