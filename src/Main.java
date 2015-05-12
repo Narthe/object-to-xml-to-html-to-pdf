@@ -26,13 +26,6 @@ public class Main {
 
 	public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException, TransformerException, DocumentException
 	{
-	    /*if (args.length != 3)
-	    {
-	        System.err.println("give command as follows : ");
-	        System.err.println("XSLTTest data.xml converted.xsl converted.html");
-	        return;
-	    }*/
-	    //String dataXML = "/home/local/users/jbrasseur/DEV/perso/PDF_export/data/FileOne.xml";
 		Course course1 = new Course(0, 0, 26);
 		Course course2 = new Course(1, 26, 36);
 		Course course3 = new Course(2, 36, 59);
@@ -52,16 +45,16 @@ public class Main {
 		}
 		String dataXML = "<Courses>\n" + coursesXml + "\n</Courses>";
 
-	    String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
-	    String outputHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.html";
+	    /*
+		String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
 	    String outputxHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.xhtml";
 	    String outputPDF = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.pdf";
-		/*
+	    */
+		
 		String inputXSL = ".\\xml\\template.xsl";
-		String outputHTML = ".\\xml\\output.html";
 		String outputxHTML = ".\\xml\\output.xhtml";
 	    String outputPDF = ".\\xml\\output.pdf";
-	    */
+	    
 		
 	    XmlToHtml st = new XmlToHtml();
 	    
@@ -73,43 +66,7 @@ public class Main {
 	    //writeFile(xhtmlString, outputxHTML);
 	    //System.out.println(htmlString);
 	    
-	    HtmlToPDF.transform(outputxHTML, outputPDF);
+	    //HtmlToPDF.transform(outputxHTML, outputPDF);
 	}
-	/*
-	public static String convertHtmlToXhtml(String html) {
-        Tidy tidy = new Tidy(); 
-        tidy.setXHTML(true); 
-        tidy.setDocType("omit");
-        InputStream inputStream = null;
-		try {
-			inputStream = new ByteArrayInputStream(html.getBytes("UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        OutputStream outputStream = new ByteArrayOutputStream();
-        tidy.parse(inputStream, outputStream); 
-        return outputStream.toString();
-    }*/
-	
-	public static String readFile(String path, Charset encoding) 
-			  throws IOException 
-	{
-	  byte[] encoded = Files.readAllBytes(Paths.get(path));
-	  return new String(encoded, encoding);
-	}
-	
-	public static void writeFile(String data, String outputFile)
-	{
-		FileWriter fWriter = null;
-		BufferedWriter writer = null;
-		try {
-		    fWriter = new FileWriter(outputFile);
-		    writer = new BufferedWriter(fWriter);
-		    writer.write(data);
-		    writer.close(); //make sure you close the writer object 
-		} catch (Exception e) {
-		  //catch any exceptions here
-		}
-	}
+
 }
