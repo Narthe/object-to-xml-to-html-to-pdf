@@ -40,7 +40,7 @@ public class XmlToHtml {
 
     	DOMSource sourcexml = new DOMSource(coursesNode);
         StreamResult out = new StreamResult(fOut);
-    	System.out.printf("The file %s exists", outputHTML);
+    	//System.out.printf("The file %s exists", outputHTML);
     	transformer.transform(sourcexml, out);
     }
 }

@@ -1,6 +1,8 @@
-import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +18,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import org.w3c.tidy.Tidy;
 import org.xml.sax.SAXException;
 
 import com.itextpdf.text.DocumentException;
@@ -47,26 +48,30 @@ public class Main {
 
 	    /*
 		String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
+		String inputCSS = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/style.css";
 	    String outputxHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.xhtml";
 	    String outputPDF = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.pdf";
 	    */
 		
 		String inputXSL = ".\\xml\\template.xsl";
+		String inputCSS = ".\\xml\\style.css";
 		String outputxHTML = ".\\xml\\output.xhtml";
 	    String outputPDF = ".\\xml\\output.pdf";
 	    
+	    File css = new File(inputCSS);
+        if (!css.exists())
+        {
+        	throw new FileNotFoundException();
+        }
 		
+        // XML to xHTML
 	    XmlToHtml st = new XmlToHtml();
-	    
 	    st.transform(dataXML, inputXSL, outputxHTML);
 	    
-	    //String htmlString = readFile(outputHTML, StandardCharsets.UTF_8);
-	    //String xhtmlString = convertHtmlToXhtml(htmlString);
+	    FileInputStream outputxHTMLStream = new FileInputStream(outputxHTML);
 	    
-	    //writeFile(xhtmlString, outputxHTML);
-	    //System.out.println(htmlString);
-	    
-	    //HtmlToPDF.transform(outputxHTML, outputPDF);
+	    // xHTML to PDF
+	    HtmlToPDF.transform(outputxHTMLStream, inputCSS, outputPDF);
 	}
 
 }
