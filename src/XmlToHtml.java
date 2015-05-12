@@ -19,46 +19,28 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 public class XmlToHtml {
 
-    public void transform(String dataXML, String inputXSL, String outputHTML)
+    public void transform(String dataXML, String inputXSL, String outputHTML) throws IOException, SAXException, ParserConfigurationException, TransformerException
     //throws TransformerConfigurationException,
     //TransformerException
     {
         TransformerFactory factory = TransformerFactory.newInstance();
         StreamSource xslStream = new StreamSource(inputXSL);
         Transformer transformer = null;
-		try {
-			transformer = factory.newTransformer(xslStream);
-		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+        transformer = factory.newTransformer(xslStream);
+
 		File fOut = new File(outputHTML);
-        if(fOut.exists() && !fOut.isDirectory())
+        if (!fOut.exists())
         {
-        	//StreamSource in = new StreamSource(dataXML);
-        	Document coursesNode = null;
-			try {
-				coursesNode = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-				        .parse(new InputSource(new StringReader(dataXML)));
-			} catch (SAXException | IOException | ParserConfigurationException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-        	DOMSource sourcexml = new DOMSource(coursesNode);
-            StreamResult out = new StreamResult(fOut);
-        	System.out.printf("The file %s exists", outputHTML);
-	        try {
-				transformer.transform(sourcexml, out);
-			} catch (TransformerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	fOut.createNewFile();
         }
-        else
-        {
-        	System.out.printf("The file %s does not exist", outputHTML);
-        }
-        //System.out.println("The generated HTML file is:" + outputHTML);
+    	//StreamSource in = new StreamSource(dataXML);
+    	Document coursesNode = null;
+    	coursesNode = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+		        .parse(new InputSource(new StringReader(dataXML)));
+
+    	DOMSource sourcexml = new DOMSource(coursesNode);
+        StreamResult out = new StreamResult(fOut);
+    	System.out.printf("The file %s exists", outputHTML);
+    	transformer.transform(sourcexml, out);
     }
 }

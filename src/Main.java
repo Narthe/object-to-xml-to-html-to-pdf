@@ -12,15 +12,19 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.w3c.tidy.Tidy;
+import org.xml.sax.SAXException;
+
+import com.itextpdf.text.DocumentException;
 
 
 public class Main {
 
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException, TransformerException, DocumentException
 	{
 	    /*if (args.length != 3)
 	    {
@@ -48,30 +52,30 @@ public class Main {
 		}
 		String dataXML = "<Courses>\n" + coursesXml + "\n</Courses>";
 
-	    //String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
-	    //String outputHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.html";
-	    //String outputPDF = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.pdf";
+	    String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
+	    String outputHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.html";
+	    String outputxHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.xhtml";
+	    String outputPDF = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.pdf";
+		/*
 		String inputXSL = ".\\xml\\template.xsl";
 		String outputHTML = ".\\xml\\output.html";
 		String outputxHTML = ".\\xml\\output.xhtml";
 	    String outputPDF = ".\\xml\\output.pdf";
+	    */
 		
 	    XmlToHtml st = new XmlToHtml();
 	    
-	    st.transform(dataXML, inputXSL, outputHTML);
+	    st.transform(dataXML, inputXSL, outputxHTML);
 	    
-	    String htmlString = readFile(outputHTML, StandardCharsets.UTF_8);
-	    String xhtmlString = convertHtmlToXhtml(htmlString);
+	    //String htmlString = readFile(outputHTML, StandardCharsets.UTF_8);
+	    //String xhtmlString = convertHtmlToXhtml(htmlString);
 	    
-	    writeFile(xhtmlString, outputxHTML);
+	    //writeFile(xhtmlString, outputxHTML);
 	    //System.out.println(htmlString);
-	    try {
-			HtmlToPDF.transform(outputxHTML, outputPDF);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    
+	    HtmlToPDF.transform(outputxHTML, outputPDF);
 	}
+	/*
 	public static String convertHtmlToXhtml(String html) {
         Tidy tidy = new Tidy(); 
         tidy.setXHTML(true); 
@@ -86,7 +90,7 @@ public class Main {
         OutputStream outputStream = new ByteArrayOutputStream();
         tidy.parse(inputStream, outputStream); 
         return outputStream.toString();
-    }
+    }*/
 	
 	public static String readFile(String path, Charset encoding) 
 			  throws IOException 
