@@ -46,17 +46,17 @@ public class Main {
 		}
 		String dataXML = "<Courses>\n" + coursesXml + "\n</Courses>";
 
-	    /*
-		String inputXSL = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/template.xsl";
-		String inputCSS = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/style.css";
-	    String outputxHTML = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.xhtml";
-	    String outputPDF = "/home/local/users/jbrasseur/DEV/perso/object-to-xml-to-html-to-pdf/xml/output.pdf";
-	    */
+	    
+		String inputXSL = "./templates/template.xsl";
+		String inputCSS = "./templates/style.css";
+	    String outputxHTML = "./output/output.xhtml";
+	    String outputPDF = "./output/output.pdf";
+	    
 		
-		String inputXSL = ".\\xml\\template.xsl";
-		String inputCSS = ".\\xml\\style.css";
-		String outputxHTML = ".\\xml\\output.xhtml";
-	    String outputPDF = ".\\xml\\output.pdf";
+//		String inputXSL = ".\\templates\\template.xsl";
+//		String inputCSS = ".\\templates\\style.css";
+//		String outputxHTML = ".\\output\\output.xhtml";
+//	    String outputPDF = ".\\output\\output.pdf";
 	    
 	    File css = new File(inputCSS);
         if (!css.exists())

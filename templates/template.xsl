@@ -24,7 +24,7 @@
                 <meta name="keywords" content="trajets professionnels" />
                 <meta name="author" content="Kilometro" />
                 <link rel="shortcut icon" href="../favicon.ico" />
-                <link rel="stylesheet" type="text/css" href="style.css" />
+                <link rel="stylesheet" type="text/css" href="../templates/style.css" />
                 <!--[if IE]>
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
                 <![endif]-->
