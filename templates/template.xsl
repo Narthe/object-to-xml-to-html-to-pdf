@@ -33,10 +33,10 @@
                 <div class="container">
                     <!-- Top Navigation -->
                     <div class="header">
-                        <h1>Feuille de trajets professionnels de <em>Charlotte Vaire</em><span>Sur la periode du <em>01/05/2015</em> au <em>31/05/2015</em></span></h1> 
+                        <h1>Feuille de trajets professionnels de <em>Charlotte Vaire</em><span>Sur la periode du <em><xsl:value-of select="Courses/start_date"/></em> au <em><xsl:value-of select="Courses/end_date"/></em></span></h1> 
                     </div>
                     <div class="component">
-                        <h2>Total : <em>548 km</em></h2>
+                        <h2>Total : <em><xsl:value-of select="Courses/distance"/> km</em></h2>
                         <table>
                             <thead>
                                 <tr>

@@ -40,13 +40,20 @@ public class Main {
 		tab.add(course4);
 		tab.add(course5);
 		
+		String startDate = "01/05/2015";
+		String endDate = "31/06/2015";
+		Integer distance = 548;
+		
+		String startDateXml = String.format("<start_date>%s</start_date>\n", startDate);
+		String endDateXml = String.format("<end_date>%s</end_date>\n", startDate);
+		String distanceXml = String.format("<distance>%d</distance>\n", distance);
 		String coursesXml = "";
 		for(Course course : tab) {
 			coursesXml+= ObjectToXml.serializeCourse(course) + "\n";
 		}
-		String dataXML = "<Courses>\n" + coursesXml + "\n</Courses>";
+		String dataXML = "<Courses>\n" + startDateXml + endDateXml + distanceXml + coursesXml + "\n</Courses>";
 
-	    
+	    System.out.println(dataXML);
 		String inputXSL = "./templates/template.xsl";
 		String inputCSS = "./templates/style.css";
 	    String outputxHTML = "./output/output.xhtml";
